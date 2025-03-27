@@ -1,10 +1,14 @@
+import Link from "next/link";
+
 type ProductProps = {
   product: {
     productID: number;
     productName: string;
     salePrice: number;
+    productCategoryID: number; // Added productCategoryID
     productData?: {
       productMainImage?: string;
+      productDescription?: string;
     };
   };
 };
@@ -22,9 +26,16 @@ export default function ProductCard({ product }: ProductProps) {
           {product.productName}
         </h2>
         <p className="text-gray-300">{product.salePrice} ₺</p>
-        <button className="mt-2 px-4 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600">
-          Detay
-        </button>
+        <div className="text-gray-400 text-sm mb-6 space-y-2">
+          {product.productData?.productDescription && (
+            <p>{product.productData.productDescription}</p>
+          )}
+        </div>
+        <Link href={`/product/${product.productID}`}>
+          <button className="mt-2 px-4 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600">
+            Detay
+          </button>
+        </Link>
       </div>
     </div>
   );
