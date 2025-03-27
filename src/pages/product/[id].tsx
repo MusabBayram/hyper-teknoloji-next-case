@@ -18,6 +18,7 @@ export default function ProductDetail() {
   const { id } = router.query;
   const [product, setProduct] = useState<Product | null>(null);
   const [products, setProducts] = useState<Product[]>([]); // Added state for products
+  const [activeTab, setActiveTab] = useState("description");
 
   useEffect(() => {
     const getProducts = async () => {
@@ -64,6 +65,78 @@ export default function ProductDetail() {
           <button className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded text-lg">
             Sepete Ekle
           </button>
+        </div>
+      </div>
+      <div className="max-w-6xl mx-auto mt-12 bg-[#1f2937] p-6 rounded-lg text-white">
+        <div className="border-b border-gray-600 mb-4 flex space-x-4">
+          <button
+            className={`py-2 px-4 text-sm font-medium ${
+              activeTab === "description"
+                ? "border-b-2 border-blue-500"
+                : "hover:text-blue-400"
+            }`}
+            onClick={() => setActiveTab("description")}
+          >
+            Ürün Açıklaması
+          </button>
+          <button
+            className={`py-2 px-4 text-sm font-medium ${
+              activeTab === "technical"
+                ? "border-b-2 border-blue-500"
+                : "hover:text-blue-400"
+            }`}
+            onClick={() => setActiveTab("technical")}
+          >
+            Teknik Detaylar
+          </button>
+          <button
+            className={`py-2 px-4 text-sm font-medium ${
+              activeTab === "return"
+                ? "border-b-2 border-blue-500"
+                : "hover:text-blue-400"
+            }`}
+            onClick={() => setActiveTab("return")}
+          >
+            İptal & İade Koşulları
+          </button>
+        </div>
+
+        <div className="text-sm text-gray-300 space-y-4">
+          {activeTab === "description" && (
+            <div>
+              <h3 className="font-semibold text-white">Ürün Açıklaması</h3>
+              <p>
+                {product.productData?.productDescription ||
+                  "Bu ürün için açıklama bulunmamaktadır."}
+              </p>
+            </div>
+          )}
+          {activeTab === "technical" && (
+            <div>
+              <h3 className="font-semibold text-white">Teknik Detaylar</h3>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Kodlar yalnızca 1 kez kullanılabilir.</li>
+                <li>Dijital ürünler için sistem gereksinimi düşüktür.</li>
+                <li>Ürün anında teslim edilir.</li>
+              </ul>
+            </div>
+          )}
+          {activeTab === "return" && (
+            <div>
+              <h3 className="font-semibold text-white">
+                İptal & İade Koşulları
+              </h3>
+              <ul className="list-disc list-inside space-y-1">
+                <li>
+                  Teslim edilen kodların tek kullanımlık olması nedeniyle iade
+                  kabul edilmemektedir.
+                </li>
+                <li>Dijital ürünlerde değişim yapılamaz.</li>
+                <li>Toplu siparişlerde özel kurallar geçerlidir.</li>
+                <li>Daha fazla bilgi için ilgili sayfamızı ziyaret ediniz.</li>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
       <div className="max-w-6xl mx-auto mt-12">
