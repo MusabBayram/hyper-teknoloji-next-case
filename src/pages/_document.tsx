@@ -7,7 +7,7 @@ export default function Document() {
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-          integrity="sha512-9MzJy+t0BblK1ZBOq4zWEH7SozR46kGUeqkhGL+tYZw7CU5c88COZsX4AXqcvHhRfr15S7tJIFUSL7+6VsXK1A==a"
+          integrity="sha512-9MzJy+t0BblK1ZBOq4zWEH7SozR46kGUeqkhGL+tYZw7CU5c88COZsX4AXqcvHhRfr15S7tJIFUSL7+6VsXK1A=="
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
