@@ -18,6 +18,7 @@ export default function ProductDetail() {
   const { id } = router.query;
   const [product, setProduct] = useState<Product | null>(null);
   const [products, setProducts] = useState<Product[]>([]); // Added state for products
+  const [recentlyViewed, setRecentlyViewed] = useState<Product[]>([]);
   const [activeTab, setActiveTab] = useState("description");
 
   useEffect(() => {
@@ -29,6 +30,18 @@ export default function ProductDetail() {
           (p: Product) => p.productID === Number(id)
         );
         setProduct(foundProduct || null);
+
+        // Handle recently viewed
+        if (foundProduct) {
+          const existing = JSON.parse(
+            localStorage.getItem("recentlyViewed") || "[]"
+          );
+          const updated = [
+            foundProduct.productID,
+            ...existing.filter((pid: number) => pid !== foundProduct.productID),
+          ].slice(0, 6);
+          localStorage.setItem("recentlyViewed", JSON.stringify(updated));
+        }
       } catch (err) {
         console.error("Ürün alınamadı:", err);
       }
@@ -36,6 +49,14 @@ export default function ProductDetail() {
 
     if (id) getProducts();
   }, [id]);
+
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("recentlyViewed") || "[]");
+    if (products.length > 0) {
+      const recent = products.filter((p) => stored.includes(p.productID));
+      setRecentlyViewed(recent);
+    }
+  }, [products]);
 
   if (!product) return <p className="text-white p-6">Yükleniyor...</p>;
 
@@ -165,6 +186,29 @@ export default function ProductDetail() {
                 <p className="text-blue-400">{similarProduct.salePrice} ₺</p>
               </div>
             ))}
+        </div>
+      </div>
+      <div className="max-w-6xl mx-auto mt-12">
+        <h2 className="text-xl font-bold mb-4 text-white">
+          Son Gezdiğin Ürünler
+        </h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {recentlyViewed.map((recentProduct) => (
+            <div
+              key={recentProduct.productID}
+              className="bg-[#1f2937] p-4 rounded text-white text-sm text-center"
+            >
+              <img
+                src={
+                  recentProduct.productData?.productMainImage ||
+                  "/placeholder.jpg"
+                }
+                className="h-24 object-contain mx-auto mb-2"
+              />
+              <p>{recentProduct.productName}</p>
+              <p className="text-blue-400">{recentProduct.salePrice} ₺</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
