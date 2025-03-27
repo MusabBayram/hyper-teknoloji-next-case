@@ -47,7 +47,7 @@ export default function Footer() {
           </div>
           <p className="text-gray-300">
             Türkiye’nin En Büyük Oyuncu Pazarı: Sevdiğiniz oyunlar için epin,
-            goldbar, ve item'ları en uygun fiyatlarla satın alın veya
+            goldbar, ve itemları en uygun fiyatlarla satın alın veya
             hesaplarınızı güvenle satışa çıkartın.
           </p>
         </div>
