@@ -8,7 +8,7 @@ Bu proje, dijital oyun ürünleri ve e-pin satışları için geliştirilen mode
 - Sticky (yapışkan) header yapısı
 - Mobil uyumlu ve responsive tasarım
 - Next.js ve Tailwind CSS ile geliştirilmiş modern frontend yapısı
-- Netlify üzerinden deploy edildi: [Proje](https://hypertec-case.netlify.app/)
+- Netlify üzerinden deploy edildi: [Uygulama Demosu](https://hypertec-case.netlify.app/)
 
 ## Kullanılan Teknolojiler
 
