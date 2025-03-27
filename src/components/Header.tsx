@@ -18,18 +18,11 @@ const Header = () => {
         isSticky ? "bg-[#2E3544]/90 py-2" : "bg-[#1E232F] py-4"
       }`}
     >
-      <div className="flex items-center justify-between max-w-screen-xl mx-auto w-full px-4">
-        {!isSticky && (
-          <div className="flex items-center space-x-6 w-full justify-between">
-            <img src="/logo.webp" alt="Logo" className="h-8" />
-            <div className="flex-grow max-w-lg mx-4">
-              <input
-                type="text"
-                placeholder="Ürün, kategori veya ilan ara"
-                className="w-full px-4 py-2 rounded-md bg-[#181C23] text-white placeholder-gray-400 focus:outline-none"
-              />
-            </div>
-            <div className="flex items-center space-x-4 text-sm font-medium text-white">
+      <div className="flex flex-col md:flex-row items-center justify-between max-w-screen-xl mx-auto w-full px-4 gap-2">
+        <div className="flex items-center justify-between w-full">
+          <img src="/logo.webp" alt="Logo" className="h-8 md:h-6" />
+          {!isSticky && (
+            <div className="flex md:hidden items-center space-x-4 text-sm font-medium text-white">
               <a href="#" className="hover:underline">
                 GİRİŞ YAP
               </a>
@@ -40,34 +33,40 @@ const Header = () => {
                 </span>
               </div>
             </div>
+          )}
+        </div>
+
+        {!isSticky && (
+          <div className="w-full md:flex-grow max-w-lg mx-auto">
+            <input
+              type="text"
+              placeholder="Ürün, kategori veya ilan ara"
+              className="w-full px-4 py-2 rounded-md bg-[#181C23] text-white placeholder-gray-400 focus:outline-none"
+            />
           </div>
         )}
+
         {isSticky && (
-          <>
-            <div className="flex items-center space-x-4">
-              <img src="/logo.webp" alt="Logo" className="h-6" />
-            </div>
-            <nav className="flex items-center space-x-4 text-sm font-medium">
-              <a href="#" className="hover:underline px-2">
-                Siparişlerim
-              </a>
-              <a href="#" className="hover:underline px-2">
-                Hesabım
-              </a>
-              <a href="#" className="hover:underline px-2">
-                Yayıncılar
-              </a>
-              <a href="#" className="hover:underline px-2">
-                İlan Ekle
-              </a>
-              <a href="#" className="hover:underline text-red-500 px-2">
-                + Bakiye Yükle
-              </a>
-              <a href="#" className="hover:underline px-2">
-                Türkçe / TL
-              </a>
-            </nav>
-          </>
+          <nav className="hidden md:flex items-center space-x-4 text-sm font-medium">
+            <a href="#" className="hover:underline px-2">
+              Siparişlerim
+            </a>
+            <a href="#" className="hover:underline px-2">
+              Hesabım
+            </a>
+            <a href="#" className="hover:underline px-2">
+              Yayıncılar
+            </a>
+            <a href="#" className="hover:underline px-2">
+              İlan Ekle
+            </a>
+            <a href="#" className="hover:underline text-red-500 px-2">
+              Bakiye Yükle
+            </a>
+            <a href="#" className="hover:underline px-2">
+              Türkçe / TL
+            </a>
+          </nav>
         )}
       </div>
     </header>
